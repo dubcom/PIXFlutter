@@ -1,6 +1,6 @@
 # Aplicação Pix QR-Code Generator
 
-![Pix QR-Code Generator](link_para_imagem.png)
+![Pix QR-Code Generator](https://github.com/dubcom/PIXFlutter/blob/flutterflow/assets/images/image.png)
 
 Bem-vindo(a) ao repositório da aplicação Pix QR-Code Generator! Esta é uma aplicação Flutter desenvolvida com o FlutterFlow que permite aos usuários gerar QR-Codes para facilitar pagamentos utilizando o sistema de pagamentos instantâneos Pix, sem a necessidade de passar por um sistema bancário intermediário.
 
