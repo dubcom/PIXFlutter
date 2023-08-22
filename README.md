@@ -22,10 +22,10 @@ A aplicação permite que os usuários insiram informações como o valor do pag
 
 ## Capturas de Tela
 
-![Tela 1](captura_tela_1.png)
+![Tela 1]([captura_tela_1.png](https://github.com/dubcom/PIXFlutter/blob/flutterflow/assets/images/Screenshot%202023-08-22%20at%2010.20.30.png)
 *Preenchimento dos dados do pagamento.*
 
-![Tela 2](captura_tela_2.png)
+![Tela 2](https://github.com/dubcom/PIXFlutter/blob/flutterflow/assets/images/Screenshot%202023-08-22%20at%2010.20.54.png)
 *Visualização do QR-Code gerado.*
 
 ## Instalação e Uso
