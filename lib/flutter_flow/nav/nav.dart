@@ -102,16 +102,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ForgotPasswordWidget(),
             ),
             FFRoute(
-              name: 'createProfile',
-              path: 'createProfile',
-              builder: (context, params) => CreateProfileWidget(),
-            ),
-            FFRoute(
               name: 'homePage',
               path: 'homePage',
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'homePage')
                   : HomePageWidget(),
+            ),
+            FFRoute(
+              name: 'createProfile',
+              path: 'createProfile',
+              builder: (context, params) => CreateProfileWidget(),
             ),
             FFRoute(
               name: 'courses',
@@ -140,9 +140,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'QR-Code',
               path: 'QR-Code',
               requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'QR-Code')
-                  : QRCodeWidget(),
+              asyncParams: {
+                'idPIXCreated':
+                    getDoc(['PIXCreated'], PIXCreatedRecord.fromSnapshot),
+              },
+              builder: (context, params) => QRCodeWidget(
+                idPIXCreated:
+                    params.getParam('idPIXCreated', ParamType.Document),
+              ),
+            ),
+            FFRoute(
+              name: 'createdKeyPix',
+              path: 'createdKeyPix',
+              builder: (context, params) => CreatedKeyPixWidget(
+                uuid: params.getParam('uuid', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

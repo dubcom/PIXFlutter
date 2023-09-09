@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sign_in_model.dart';
@@ -49,7 +50,7 @@ class _SignInWidgetState extends State<SignInWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.00, -1.00),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -92,9 +93,9 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       Brightness.dark)
                                     SvgPicture.asset(
                                       'assets/images/LogoDark.svg',
-                                      width: 180.0,
-                                      height: 60.0,
-                                      fit: BoxFit.fitWidth,
+                                      width: 300.0,
+                                      height: 100.0,
+                                      fit: BoxFit.contain,
                                     ),
                                 ],
                               ),
@@ -105,7 +106,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 4.0, 0.0, 0.0),
+                                  0.0, 8.0, 0.0, 0.0),
                               child: Text(
                                 'Use o formulário abaixo para acessar sua conta.',
                                 style: FlutterFlowTheme.of(context).bodySmall,
@@ -113,7 +114,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 16.0, 0.0, 0.0),
+                                  0.0, 20.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -344,7 +345,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                                         borderRadius:
                                             BorderRadius.circular(50.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment:
+                                          AlignmentDirectional(0.00, 0.00),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             20.0, 12.0, 20.0, 12.0),
@@ -404,11 +406,14 @@ class _SignInWidgetState extends State<SignInWidget> {
                                     context.goNamedAuth(
                                         'homePage', context.mounted);
                                   },
-                                  text: 'Entrar com Google',
+                                  text: 'Com Google',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.gofore,
+                                  ),
                                   options: FFButtonOptions(
                                     height: 40.0,
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
+                                        24.0, 12.0, 24.0, 12.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
@@ -431,7 +436,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(50.0),
                                   ),
                                 ),
                               ],

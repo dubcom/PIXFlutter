@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class CreateProfileModel extends FlutterFlowModel {
+class CreatedKeyPixModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;
@@ -21,6 +21,9 @@ class CreateProfileModel extends FlutterFlowModel {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
+  // State field(s) for yourPIXKey widget.
+  TextEditingController? yourPIXKeyController;
+  String? Function(BuildContext, String?)? yourPIXKeyControllerValidator;
   // State field(s) for yourName widget.
   TextEditingController? yourNameController;
   String? Function(BuildContext, String?)? yourNameControllerValidator;
@@ -39,6 +42,7 @@ class CreateProfileModel extends FlutterFlowModel {
   void initState(BuildContext context) {}
 
   void dispose() {
+    yourPIXKeyController?.dispose();
     yourNameController?.dispose();
     cityController?.dispose();
     myBioController?.dispose();

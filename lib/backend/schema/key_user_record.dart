@@ -41,12 +41,18 @@ class KeyUserRecord extends FirestoreRecord {
   String get description => _description ?? '';
   bool hasDescription() => _description != null;
 
+  // "keyPIX" field.
+  String? _keyPIX;
+  String get keyPIX => _keyPIX ?? '';
+  bool hasKeyPIX() => _keyPIX != null;
+
   void _initializeFields() {
     _cityPIX = snapshotData['cityPIX'] as String?;
     _createdAt = snapshotData['createdAt'] as DateTime?;
     _namePIX = snapshotData['namePIX'] as String?;
     _authoID = snapshotData['authoID'] as DocumentReference?;
     _description = snapshotData['description'] as String?;
+    _keyPIX = snapshotData['keyPIX'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -89,6 +95,7 @@ Map<String, dynamic> createKeyUserRecordData({
   String? namePIX,
   DocumentReference? authoID,
   String? description,
+  String? keyPIX,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -97,6 +104,7 @@ Map<String, dynamic> createKeyUserRecordData({
       'namePIX': namePIX,
       'authoID': authoID,
       'description': description,
+      'keyPIX': keyPIX,
     }.withoutNulls,
   );
 
@@ -112,12 +120,19 @@ class KeyUserRecordDocumentEquality implements Equality<KeyUserRecord> {
         e1?.createdAt == e2?.createdAt &&
         e1?.namePIX == e2?.namePIX &&
         e1?.authoID == e2?.authoID &&
-        e1?.description == e2?.description;
+        e1?.description == e2?.description &&
+        e1?.keyPIX == e2?.keyPIX;
   }
 
   @override
-  int hash(KeyUserRecord? e) => const ListEquality()
-      .hash([e?.cityPIX, e?.createdAt, e?.namePIX, e?.authoID, e?.description]);
+  int hash(KeyUserRecord? e) => const ListEquality().hash([
+        e?.cityPIX,
+        e?.createdAt,
+        e?.namePIX,
+        e?.authoID,
+        e?.description,
+        e?.keyPIX
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is KeyUserRecord;

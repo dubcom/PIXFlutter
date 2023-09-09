@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sign_up_model.dart';
@@ -49,7 +50,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.00, -1.00),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -67,7 +68,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 12.0, 20.0, 12.0),
+                            20.0, 0.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -84,17 +85,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       Brightness.light)
                                     SvgPicture.asset(
                                       'assets/images/Logo.svg',
-                                      width: 150.0,
-                                      height: 40.0,
-                                      fit: BoxFit.fitWidth,
+                                      width: 300.0,
+                                      height: 100.0,
+                                      fit: BoxFit.contain,
                                     ),
                                   if (Theme.of(context).brightness ==
                                       Brightness.dark)
-                                    SvgPicture.asset(
-                                      'assets/images/LogoDark.svg',
-                                      width: 180.0,
-                                      height: 60.0,
-                                      fit: BoxFit.fitWidth,
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(0.00, 0.00),
+                                      child: SvgPicture.asset(
+                                        'assets/images/LogoDark.svg',
+                                        width: 300.0,
+                                        height: 100.0,
+                                        fit: BoxFit.fitHeight,
+                                      ),
                                     ),
                                 ],
                               ),
@@ -280,7 +285,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   0.0, 24.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   InkWell(
                                     splashColor: Colors.transparent,
@@ -319,10 +324,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         borderRadius:
                                             BorderRadius.circular(50.0),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment:
+                                          AlignmentDirectional(0.00, 0.00),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 12.0, 20.0, 12.0),
+                                            20.0, 8.0, 20.0, 8.0),
                                         child: Text(
                                           'Cadastrar',
                                           style: FlutterFlowTheme.of(context)
@@ -383,11 +389,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         context.goNamedAuth(
                                             'homePage', context.mounted);
                                       },
-                                      text: 'Entrar com Google',
+                                      text: ' Google',
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.gofore,
+                                      ),
                                       options: FFButtonOptions(
                                         height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
+                                            24.0, 12.0, 24.0, 12.0),
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
@@ -415,7 +424,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           width: 1.0,
                                         ),
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(50.0),
                                       ),
                                     ),
                                   ],
@@ -450,7 +459,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 8.0, 0.0, 8.0),
                                       child: Text(
-                                        'Login',
+                                        'Entre',
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(

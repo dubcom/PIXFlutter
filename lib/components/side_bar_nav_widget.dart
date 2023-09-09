@@ -98,7 +98,7 @@ class _SideBarNavWidgetState extends State<SideBarNavWidget> {
                       'assets/images/LogoDark.svg',
                       width: 180.0,
                       height: 60.0,
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.contain,
                     ),
                 ],
               ),

@@ -48,6 +48,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
     userStream = myQRCodeFirebaseUserStream()
@@ -128,9 +129,8 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'homePage': HomePageWidget(),
       'courses': CoursesWidget(),
-      'createPIX': CreatePIXWidget(),
       'profilePage': ProfilePageWidget(),
-      'QR-Code': QRCodeWidget(),
+      'createPIX': CreatePIXWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -169,14 +169,6 @@ class _NavBarPageState extends State<NavBarPage> {
                 size: 24.0,
               ),
               label: '•',
-              tooltip: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.qr_code_2_sharp,
-                size: 24.0,
-              ),
-              label: '.',
               tooltip: '',
             ),
             BottomNavigationBarItem(

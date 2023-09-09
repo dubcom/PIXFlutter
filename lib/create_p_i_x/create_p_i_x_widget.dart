@@ -56,11 +56,11 @@ class _CreatePIXWidgetState extends State<CreatePIXWidget> {
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               title: Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.00, 0.00),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                   child: Text(
-                    'Cadastrar  chave PIX',
+                    'Gerar QR-Code ',
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).headlineMedium,
                   ),
@@ -74,7 +74,7 @@ class _CreatePIXWidgetState extends State<CreatePIXWidget> {
       body: SafeArea(
         top: true,
         child: Align(
-          alignment: AlignmentDirectional(0.0, 0.0),
+          alignment: AlignmentDirectional(0.00, 0.00),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -120,6 +120,7 @@ class _CreatePIXWidgetState extends State<CreatePIXWidget> {
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
                                       .bodyMediumFamily),
+                              lineHeight: 2.0,
                             ),
                       ),
                     ),
@@ -316,7 +317,7 @@ class _CreatePIXWidgetState extends State<CreatePIXWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.05),
+                      alignment: AlignmentDirectional(0.00, 0.05),
                       child: Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
@@ -343,7 +344,7 @@ class _CreatePIXWidgetState extends State<CreatePIXWidget> {
                               'createdAt': DateTime.now(),
                             }, pIXCreatedRecordReference);
 
-                            context.goNamed('QR-Code');
+                            context.goNamed('homePage');
 
                             setState(() {});
                           },
