@@ -116,9 +116,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'courses',
               path: 'courses',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'courses')
-                  : CoursesWidget(),
+              builder: (context, params) => CoursesWidget(),
             ),
             FFRoute(
               name: 'profilePage',
@@ -152,6 +150,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'createdKeyPix',
               path: 'createdKeyPix',
+              requireAuth: true,
               builder: (context, params) => CreatedKeyPixWidget(
                 uuid: params.getParam('uuid', ParamType.String),
               ),
@@ -340,7 +339,7 @@ class FFRoute {
                   color: Colors.transparent,
                   child: Image.asset(
                     'assets/images/capa.png',
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.fill,
                   ),
                 )
               : page;

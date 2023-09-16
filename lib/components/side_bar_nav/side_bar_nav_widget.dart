@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -103,9 +104,59 @@ class _SideBarNavWidgetState extends State<SideBarNavWidget> {
                 ],
               ),
             ),
-            Text(
-              'Menu',
-              style: FlutterFlowTheme.of(context).bodySmall,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              child: Container(
+                width: double.infinity,
+                height: 48.0,
+                decoration: BoxDecoration(
+                  color: widget.oneBG,
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 4.0, 4.0),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed('homePage');
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 10.0, 0.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50.0),
+                            child: Image.network(
+                              'https://picsum.photos/seed/589/600',
+                              width: 30.0,
+                              height: 30.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        AuthUserStreamWidget(
+                          builder: (context) => Text(
+                            currentUserDisplayName,
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              child: Text(
+                'Menu',
+                style: FlutterFlowTheme.of(context).bodyMedium,
+              ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
@@ -118,19 +169,28 @@ class _SideBarNavWidgetState extends State<SideBarNavWidget> {
                 ),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 4.0, 4.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                        child: widget.oneIcon!,
-                      ),
-                      Text(
-                        'Dashboard',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
-                      ),
-                    ],
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed('homePage');
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 12.0, 0.0),
+                          child: widget.oneIcon!,
+                        ),
+                        Text(
+                          'Dashboard',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -146,19 +206,28 @@ class _SideBarNavWidgetState extends State<SideBarNavWidget> {
                 ),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 4.0, 4.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                        child: widget.twoIcon!,
-                      ),
-                      Text(
-                        'Cobranças',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
-                      ),
-                    ],
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed('homePage');
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 12.0, 0.0),
+                          child: widget.twoIcon!,
+                        ),
+                        Text(
+                          'Cobranças',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -201,6 +270,51 @@ class _SideBarNavWidgetState extends State<SideBarNavWidget> {
                         ),
                         Text(
                           'Perfil',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  GoRouter.of(context).prepareAuthEvent();
+                  await authManager.signOut();
+                  GoRouter.of(context).clearRedirectLocation();
+
+                  context.goNamedAuth('signIn', context.mounted);
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 48.0,
+                  decoration: BoxDecoration(
+                    color: widget.threeColor,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 4.0, 4.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 12.0, 0.0),
+                          child: Icon(
+                            Icons.logout_outlined,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                        ),
+                        Text(
+                          'Sair',
                           style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ],

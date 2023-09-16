@@ -37,8 +37,8 @@ class PIXCreatedRecord extends FirestoreRecord {
   bool hasCreatedAt() => _createdAt != null;
 
   // "valuePIX" field.
-  String? _valuePIX;
-  String get valuePIX => _valuePIX ?? '';
+  double? _valuePIX;
+  double get valuePIX => _valuePIX ?? 0.0;
   bool hasValuePIX() => _valuePIX != null;
 
   void _initializeFields() {
@@ -46,7 +46,7 @@ class PIXCreatedRecord extends FirestoreRecord {
     _message = snapshotData['message'] as String?;
     _textId = snapshotData['textId'] as String?;
     _createdAt = snapshotData['createdAt'] as DateTime?;
-    _valuePIX = snapshotData['valuePIX'] as String?;
+    _valuePIX = castToType<double>(snapshotData['valuePIX']);
   }
 
   static CollectionReference get collection =>
@@ -88,7 +88,7 @@ Map<String, dynamic> createPIXCreatedRecordData({
   String? message,
   String? textId,
   DateTime? createdAt,
-  String? valuePIX,
+  double? valuePIX,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{

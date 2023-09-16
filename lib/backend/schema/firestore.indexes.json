@@ -10,7 +10,21 @@
         },
         {
           "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "keyUser",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "authoID",
           "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
         }
       ]
     }

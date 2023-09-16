@@ -1,6 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/side_bar_nav_widget.dart';
+import '/components/side_bar_nav/side_bar_nav_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -47,6 +48,29 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: responsiveVisibility(
+          context: context,
+          tabletLandscape: false,
+          desktop: false,
+        )
+            ? AppBar(
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                automaticallyImplyLeading: false,
+                title: AuthUserStreamWidget(
+                  builder: (context) => Text(
+                    valueOrDefault<String>(
+                      currentUserDisplayName,
+                      'Painel',
+                    ),
+                    style: FlutterFlowTheme.of(context).headlineMedium,
+                  ),
+                ),
+                actions: [],
+                centerTitle: false,
+                elevation: 0.0,
+              )
+            : null,
         body: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -94,16 +118,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Painel admin',
-                            style: FlutterFlowTheme.of(context).headlineSmall,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 4.0, 0.0, 0.0),
-                            child: Text(
-                              'Aqui você lista suas chaves PIX',
-                              style: FlutterFlowTheme.of(context).bodySmall,
-                            ),
+                            'Aqui você lista suas chaves PIX',
+                            style: FlutterFlowTheme.of(context).bodySmall,
                           ),
                         ],
                       ),
@@ -240,7 +256,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   .where('authorId',
                                                       isEqualTo:
                                                           currentUserReference)
-                                                  .orderBy('createdAt'),
+                                                  .orderBy('createdAt',
+                                                      descending: true),
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -349,26 +366,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           12.0,
                                                                           0.0),
                                                                   child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                    child:
-                                                                        CachedNetworkImage(
-                                                                      fadeInDuration:
-                                                                          Duration(
-                                                                              milliseconds: 500),
-                                                                      fadeOutDuration:
-                                                                          Duration(
-                                                                              milliseconds: 500),
-                                                                      imageUrl:
-                                                                          'https://images.unsplash.com/photo-1611691543545-f19c70f74a29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDQ0fHRvd0paRnNrcEdnfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-                                                                      width:
-                                                                          40.0,
-                                                                      height:
-                                                                          40.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                                      AuthUserStreamWidget(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                      child:
+                                                                          CachedNetworkImage(
+                                                                        fadeInDuration:
+                                                                            Duration(milliseconds: 500),
+                                                                        fadeOutDuration:
+                                                                            Duration(milliseconds: 500),
+                                                                        imageUrl:
+                                                                            currentUserPhoto,
+                                                                        width:
+                                                                            40.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -441,8 +460,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             Expanded(
                                                               child: Text(
                                                                 dateTimeFormat(
-                                                                    'MEd',
-                                                                    getCurrentTimestamp),
+                                                                  'MEd',
+                                                                  getCurrentTimestamp,
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium,
@@ -456,8 +479,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             Expanded(
                                                               child: Text(
                                                                 dateTimeFormat(
-                                                                    'relative',
-                                                                    getCurrentTimestamp),
+                                                                  'relative',
+                                                                  getCurrentTimestamp,
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium,
@@ -474,7 +501,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               children: [
                                                                 Text(
                                                                   listViewPIXCreatedRecord
-                                                                      .valuePIX,
+                                                                      .valuePIX
+                                                                      .toString(),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -490,7 +518,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 if (responsiveVisibility(
                                                                   context:
                                                                       context,
-                                                                  tablet: false,
                                                                   tabletLandscape:
                                                                       false,
                                                                   desktop:
@@ -505,9 +532,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             0.0),
                                                                     child: Text(
                                                                       dateTimeFormat(
-                                                                          'M/d H:mm',
-                                                                          listViewPIXCreatedRecord
-                                                                              .createdAt!),
+                                                                        'M/d H:mm',
+                                                                        listViewPIXCreatedRecord
+                                                                            .createdAt!,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodySmall
@@ -611,8 +641,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .primaryText,
                                                 size: 24.0,
                                               ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
+                                              onPressed: () async {
+                                                context.pushNamed(
+                                                  'createdKeyPix',
+                                                  queryParameters: {
+                                                    'uuid': serializeParam(
+                                                      currentUserUid,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
                                               },
                                             ),
                                           ),
@@ -675,9 +713,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: StreamBuilder<List<KeyUserRecord>>(
                                         stream: queryKeyUserRecord(
                                           queryBuilder: (keyUserRecord) =>
-                                              keyUserRecord.where('authoID',
-                                                  isEqualTo:
-                                                      currentUserReference),
+                                              keyUserRecord
+                                                  .where(
+                                                      'authoID',
+                                                      isEqualTo:
+                                                          currentUserReference)
+                                                  .orderBy('createdAt',
+                                                      descending: true),
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -857,9 +899,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             children: [
                                                               Text(
                                                                 dateTimeFormat(
-                                                                    'd/M H:mm',
-                                                                    listViewKeyUserRecord
-                                                                        .createdAt!),
+                                                                  'd/M H:mm',
+                                                                  listViewKeyUserRecord
+                                                                      .createdAt!,
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium

@@ -11,6 +11,7 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
@@ -87,7 +88,9 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: _locale,
-      supportedLocales: const [Locale('en', '')],
+      supportedLocales: const [
+        Locale('pt'),
+      ],
       theme: ThemeData(
         brightness: Brightness.light,
         scrollbarTheme: ScrollbarThemeData(),
@@ -127,9 +130,8 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'homePage': HomePageWidget(),
-      'courses': CoursesWidget(),
       'profilePage': ProfilePageWidget(),
+      'homePage': HomePageWidget(),
       'createPIX': CreatePIXWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
@@ -156,27 +158,23 @@ class _NavBarPageState extends State<NavBarPage> {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_business_rounded,
+              icon: FaIcon(
+                FontAwesomeIcons.userCog,
                 size: 24.0,
               ),
-              label: '•',
+              label: 'Perfil',
               tooltip: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.school_outlined,
+              icon: FaIcon(
+                FontAwesomeIcons.home,
                 size: 24.0,
               ),
-              label: '•',
-              tooltip: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_circle_outlined,
+              activeIcon: Icon(
+                Icons.home,
                 size: 24.0,
               ),
-              label: '•',
+              label: 'Painel',
               tooltip: '',
             ),
             BottomNavigationBarItem(
@@ -184,7 +182,7 @@ class _NavBarPageState extends State<NavBarPage> {
                 Icons.qr_code_2_sharp,
                 size: 24.0,
               ),
-              label: '.',
+              label: 'Gerar',
               tooltip: '',
             )
           ],
