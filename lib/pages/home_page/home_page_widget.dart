@@ -5,9 +5,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -43,8 +45,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -57,14 +70,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 backgroundColor:
                     FlutterFlowTheme.of(context).secondaryBackground,
                 automaticallyImplyLeading: false,
-                title: AuthUserStreamWidget(
-                  builder: (context) => Text(
-                    valueOrDefault<String>(
-                      currentUserDisplayName,
-                      'Painel',
-                    ),
-                    style: FlutterFlowTheme.of(context).headlineMedium,
-                  ),
+                title: Text(
+                  'Painel ',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).headlineMedium,
                 ),
                 actions: [],
                 centerTitle: false,
@@ -168,11 +177,56 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'PIX gerados',
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineSmall,
+                                          0.0, 0.0, 8.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              'PIX gerados',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineSmall,
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                0.00, 0.00),
+                                            child: FlutterFlowIconButton(
+                                              borderColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              borderRadius: 20.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 40.0,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              hoverColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .accent2,
+                                              hoverIconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              icon: Icon(
+                                                Icons.add,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                              showLoadingIndicator: true,
+                                              onPressed: () async {
+                                                context.pushNamed('createPIX');
+                                              },
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     Padding(
@@ -253,9 +307,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         stream: queryPIXCreatedRecord(
                                           queryBuilder: (pIXCreatedRecord) =>
                                               pIXCreatedRecord
-                                                  .where('authorId',
-                                                      isEqualTo:
-                                                          currentUserReference)
+                                                  .where(
+                                                    'authorId',
+                                                    isEqualTo:
+                                                        currentUserReference,
+                                                  )
                                                   .orderBy('createdAt',
                                                       descending: true),
                                         ),
@@ -307,20 +363,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context.pushNamed(
-                                                      'QR-Code',
-                                                      queryParameters: {
-                                                        'idPIXCreated':
-                                                            serializeParam(
-                                                          listViewPIXCreatedRecord,
-                                                          ParamType.Document,
-                                                        ),
-                                                      }.withoutNulls,
-                                                      extra: <String, dynamic>{
-                                                        'idPIXCreated':
-                                                            listViewPIXCreatedRecord,
-                                                      },
-                                                    );
+                                                    context
+                                                        .pushNamed('QR-Code');
                                                   },
                                                   child: Container(
                                                     width: double.infinity,
@@ -446,11 +490,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           ))
                                                             Expanded(
                                                               flex: 2,
-                                                              child: Text(
-                                                                'user@domainname.com',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium,
+                                                              child:
+                                                                  AuthUserStreamWidget(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Text(
+                                                                  currentUserEmailVerified
+                                                                      .toString(),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium,
+                                                                ),
                                                               ),
                                                             ),
                                                           if (responsiveVisibility(
@@ -500,9 +550,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       .end,
                                                               children: [
                                                                 Text(
-                                                                  listViewPIXCreatedRecord
-                                                                      .valuePIX
-                                                                      .toString(),
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    functions.currencyCustomFunction(
+                                                                        valueOrDefault<String>(
+                                                                          listViewPIXCreatedRecord
+                                                                              .valuePIX
+                                                                              .toString(),
+                                                                          '00',
+                                                                        ),
+                                                                        2,
+                                                                        'pt_BR'),
+                                                                    'R\$ 00,00',
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -633,6 +693,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .primary,
                                               hoverColor:
                                                   FlutterFlowTheme.of(context)
+                                                      .accent2,
+                                              hoverIconColor:
+                                                  FlutterFlowTheme.of(context)
                                                       .error,
                                               icon: Icon(
                                                 Icons.add,
@@ -642,15 +705,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 size: 24.0,
                                               ),
                                               onPressed: () async {
-                                                context.pushNamed(
-                                                  'createdKeyPix',
-                                                  queryParameters: {
-                                                    'uuid': serializeParam(
-                                                      currentUserUid,
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
+                                                context
+                                                    .pushNamed('createdKeyPix');
                                               },
                                             ),
                                           ),
@@ -715,9 +771,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           queryBuilder: (keyUserRecord) =>
                                               keyUserRecord
                                                   .where(
-                                                      'authoID',
-                                                      isEqualTo:
-                                                          currentUserReference)
+                                                    'authoID',
+                                                    isEqualTo:
+                                                        currentUserReference,
+                                                  )
                                                   .orderBy('createdAt',
                                                       descending: true),
                                         ),

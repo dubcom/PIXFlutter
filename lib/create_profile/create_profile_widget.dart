@@ -9,6 +9,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'create_profile_model.dart';
@@ -33,10 +34,16 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
 
     _model.yourNameController ??=
         TextEditingController(text: currentUserDisplayName);
+    _model.yourNameFocusNode ??= FocusNode();
+
     _model.cityController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.city, ''));
+    _model.cityFocusNode ??= FocusNode();
+
     _model.myBioController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.bio, ''));
+    _model.myBioFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -49,6 +56,15 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -234,6 +250,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                         child: AuthUserStreamWidget(
                           builder: (context) => TextFormField(
                             controller: _model.yourNameController,
+                            focusNode: _model.yourNameFocusNode,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Seu Nome',
@@ -287,6 +304,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                         child: AuthUserStreamWidget(
                           builder: (context) => TextFormField(
                             controller: _model.cityController,
+                            focusNode: _model.cityFocusNode,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Sua cidade',
@@ -403,6 +421,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                         child: AuthUserStreamWidget(
                           builder: (context) => TextFormField(
                             controller: _model.myBioController,
+                            focusNode: _model.myBioFocusNode,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelStyle:

@@ -130,8 +130,8 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'profilePage': ProfilePageWidget(),
       'homePage': HomePageWidget(),
+      'profilePage': ProfilePageWidget(),
       'createPIX': CreatePIXWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
@@ -150,21 +150,13 @@ class _NavBarPageState extends State<NavBarPage> {
             _currentPage = null;
             _currentPageName = tabs.keys.toList()[i];
           }),
-          backgroundColor: Colors.white,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           selectedItemColor: FlutterFlowTheme.of(context).primary,
           unselectedItemColor: FlutterFlowTheme.of(context).secondaryText,
-          showSelectedLabels: true,
+          showSelectedLabels: false,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.userCog,
-                size: 24.0,
-              ),
-              label: 'Perfil',
-              tooltip: '',
-            ),
             BottomNavigationBarItem(
               icon: FaIcon(
                 FontAwesomeIcons.home,
@@ -175,6 +167,14 @@ class _NavBarPageState extends State<NavBarPage> {
                 size: 24.0,
               ),
               label: 'Painel',
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.userCog,
+                size: 24.0,
+              ),
+              label: 'Perfil',
               tooltip: '',
             ),
             BottomNavigationBarItem(

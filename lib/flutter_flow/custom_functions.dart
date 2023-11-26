@@ -28,11 +28,8 @@ String? generatePixPayload(
   }
 
   // Aplica a função removeAccentsAndSpaces a cada string
-  pixKey = removeAccentsAndSpaces(pixKey);
-  description = removeAccentsAndSpaces(description);
   merchantName = removeAccentsAndSpaces(merchantName);
   txid = removeAccentsAndSpaces(txid);
-  merchantCity = removeAccentsAndSpaces(merchantCity!);
 
   {
     String ID_PAYLOAD_FORMAT_INDICATOR = "00";
@@ -114,9 +111,39 @@ String? generatePixPayload(
         _getValue(ID_TRANSACTION_AMOUNT, amount.toStringAsFixed(2)) +
         _getValue(ID_COUNTRY_CODE, "BR") +
         _getValue(ID_MERCHANT_NAME, merchantName) +
-        _getValue(ID_MERCHANT_CITY, merchantCity) +
+        _getValue(ID_MERCHANT_CITY, merchantCity!) +
         _getAdditionalDataFieldTemplate(txid);
 
     return payload + _getCRC16(payload);
+  }
+}
+
+String? currencyCustomFunction(
+  String? stringNumber,
+  int? decimalDigits,
+  String? locale,
+) {
+  {
+    try {
+      //Convert the input from String to Double
+      stringNumber = stringNumber?.replaceAll(',', '.');
+      if (stringNumber != null) {
+        var number = double.parse(stringNumber);
+
+        return NumberFormat.currency(
+                //Parameters
+                locale: locale,
+                decimalDigits: decimalDigits)
+            //Format
+            .format(number);
+      }
+
+      //If something goes wrong, catch the error
+    } catch (e) {
+      //Print the error
+      print(e);
+      //And return '0' to avoid null
+      return '0';
+    }
   }
 }

@@ -46,6 +46,11 @@ class KeyUserRecord extends FirestoreRecord {
   String get keyPIX => _keyPIX ?? '';
   bool hasKeyPIX() => _keyPIX != null;
 
+  // "statusPIX" field.
+  bool? _statusPIX;
+  bool get statusPIX => _statusPIX ?? false;
+  bool hasStatusPIX() => _statusPIX != null;
+
   void _initializeFields() {
     _cityPIX = snapshotData['cityPIX'] as String?;
     _createdAt = snapshotData['createdAt'] as DateTime?;
@@ -53,6 +58,7 @@ class KeyUserRecord extends FirestoreRecord {
     _authoID = snapshotData['authoID'] as DocumentReference?;
     _description = snapshotData['description'] as String?;
     _keyPIX = snapshotData['keyPIX'] as String?;
+    _statusPIX = snapshotData['statusPIX'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -96,6 +102,7 @@ Map<String, dynamic> createKeyUserRecordData({
   DocumentReference? authoID,
   String? description,
   String? keyPIX,
+  bool? statusPIX,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -105,6 +112,7 @@ Map<String, dynamic> createKeyUserRecordData({
       'authoID': authoID,
       'description': description,
       'keyPIX': keyPIX,
+      'statusPIX': statusPIX,
     }.withoutNulls,
   );
 
@@ -121,7 +129,8 @@ class KeyUserRecordDocumentEquality implements Equality<KeyUserRecord> {
         e1?.namePIX == e2?.namePIX &&
         e1?.authoID == e2?.authoID &&
         e1?.description == e2?.description &&
-        e1?.keyPIX == e2?.keyPIX;
+        e1?.keyPIX == e2?.keyPIX &&
+        e1?.statusPIX == e2?.statusPIX;
   }
 
   @override
@@ -131,7 +140,8 @@ class KeyUserRecordDocumentEquality implements Equality<KeyUserRecord> {
         e?.namePIX,
         e?.authoID,
         e?.description,
-        e?.keyPIX
+        e?.keyPIX,
+        e?.statusPIX
       ]);
 
   @override

@@ -3,14 +3,16 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'courses_widget.dart' show CoursesWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
-class CoursesModel extends FlutterFlowModel {
+class CoursesModel extends FlutterFlowModel<CoursesWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

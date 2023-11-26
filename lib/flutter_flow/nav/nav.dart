@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
-import '../../auth/base_auth_user_provider.dart';
+import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -138,22 +139,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'QR-Code',
               path: 'QR-Code',
               requireAuth: true,
-              asyncParams: {
-                'idPIXCreated':
-                    getDoc(['PIXCreated'], PIXCreatedRecord.fromSnapshot),
-              },
               builder: (context, params) => QRCodeWidget(
-                idPIXCreated:
-                    params.getParam('idPIXCreated', ParamType.Document),
+                pi: params.getParam('pi', ParamType.String),
               ),
             ),
             FFRoute(
               name: 'createdKeyPix',
               path: 'createdKeyPix',
               requireAuth: true,
-              builder: (context, params) => CreatedKeyPixWidget(
-                uuid: params.getParam('uuid', ParamType.String),
-              ),
+              builder: (context, params) => CreatedKeyPixWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
@@ -378,4 +372,24 @@ class TransitionInfo {
   final Alignment? alignment;
 
   static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+}
+
+class RootPageContext {
+  const RootPageContext(this.isRootPage, [this.errorRoute]);
+  final bool isRootPage;
+  final String? errorRoute;
+
+  static bool isInactiveRootPage(BuildContext context) {
+    final rootPageContext = context.read<RootPageContext?>();
+    final isRootPage = rootPageContext?.isRootPage ?? false;
+    final location = GoRouter.of(context).location;
+    return isRootPage &&
+        location != '/' &&
+        location != rootPageContext?.errorRoute;
+  }
+
+  static Widget wrap(Widget child, {String? errorRoute}) => Provider.value(
+        value: RootPageContext(true, errorRoute),
+        child: child,
+      );
 }

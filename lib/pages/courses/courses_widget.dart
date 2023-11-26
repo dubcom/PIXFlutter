@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -90,8 +91,19 @@ class _CoursesWidgetState extends State<CoursesWidget>
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -585,6 +597,8 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                       width: 240.0,
                                                       lineHeight: 16.0,
                                                       animation: true,
+                                                      animateFromLastPercent:
+                                                          true,
                                                       progressColor:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -889,6 +903,8 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                       width: 240.0,
                                                       lineHeight: 16.0,
                                                       animation: true,
+                                                      animateFromLastPercent:
+                                                          true,
                                                       progressColor:
                                                           FlutterFlowTheme.of(
                                                                   context)

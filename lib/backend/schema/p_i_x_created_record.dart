@@ -41,12 +41,18 @@ class PIXCreatedRecord extends FirestoreRecord {
   double get valuePIX => _valuePIX ?? 0.0;
   bool hasValuePIX() => _valuePIX != null;
 
+  // "keyPIX" field.
+  String? _keyPIX;
+  String get keyPIX => _keyPIX ?? '';
+  bool hasKeyPIX() => _keyPIX != null;
+
   void _initializeFields() {
     _authorId = snapshotData['authorId'] as DocumentReference?;
     _message = snapshotData['message'] as String?;
     _textId = snapshotData['textId'] as String?;
     _createdAt = snapshotData['createdAt'] as DateTime?;
     _valuePIX = castToType<double>(snapshotData['valuePIX']);
+    _keyPIX = snapshotData['keyPIX'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -89,6 +95,7 @@ Map<String, dynamic> createPIXCreatedRecordData({
   String? textId,
   DateTime? createdAt,
   double? valuePIX,
+  String? keyPIX,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -97,6 +104,7 @@ Map<String, dynamic> createPIXCreatedRecordData({
       'textId': textId,
       'createdAt': createdAt,
       'valuePIX': valuePIX,
+      'keyPIX': keyPIX,
     }.withoutNulls,
   );
 
@@ -112,12 +120,19 @@ class PIXCreatedRecordDocumentEquality implements Equality<PIXCreatedRecord> {
         e1?.message == e2?.message &&
         e1?.textId == e2?.textId &&
         e1?.createdAt == e2?.createdAt &&
-        e1?.valuePIX == e2?.valuePIX;
+        e1?.valuePIX == e2?.valuePIX &&
+        e1?.keyPIX == e2?.keyPIX;
   }
 
   @override
-  int hash(PIXCreatedRecord? e) => const ListEquality()
-      .hash([e?.authorId, e?.message, e?.textId, e?.createdAt, e?.valuePIX]);
+  int hash(PIXCreatedRecord? e) => const ListEquality().hash([
+        e?.authorId,
+        e?.message,
+        e?.textId,
+        e?.createdAt,
+        e?.valuePIX,
+        e?.keyPIX
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is PIXCreatedRecord;
