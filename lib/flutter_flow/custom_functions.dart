@@ -24,7 +24,8 @@ String? generatePixPayload(
     // Remove acentos e caracteres de espaço usando regex
     return input
         .replaceAll(RegExp(r'[^\x00-\x7F]+'), '') // Remove acentos
-        .replaceAll(RegExp(r'\s+'), ''); // Remove espaços em branco
+        .replaceAll(RegExp(r'\s+'), '') // Remove espaços em branco
+        .replaceAll(RegExp(r'[.,]'), ''); // Remove ponto e vírgula usando regex
   }
 
   // Aplica a função removeAccentsAndSpaces a cada string

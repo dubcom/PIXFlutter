@@ -148,7 +148,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                     desktop: false,
                   ))
                     Align(
-                      alignment: AlignmentDirectional(0.00, 0.00),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: 44.0,
@@ -156,11 +156,11 @@ class _CoursesWidgetState extends State<CoursesWidget>
                           color: FlutterFlowTheme.of(context).primaryBackground,
                           borderRadius: BorderRadius.circular(0.0),
                         ),
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                       ),
                     ),
                   Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 0.0),
@@ -178,7 +178,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                           ],
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        alignment: AlignmentDirectional(0.00, -1.00),
+                        alignment: AlignmentDirectional(0.0, -1.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
@@ -211,8 +211,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 16.0, 16.0, 16.0),
+                                      padding: EdgeInsets.all(16.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -368,12 +367,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  12.0,
-                                                                  12.0,
-                                                                  12.0,
-                                                                  12.0),
+                                                          EdgeInsets.all(12.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -398,7 +392,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                             ),
                                                             alignment:
                                                                 AlignmentDirectional(
-                                                                    0.00, 0.00),
+                                                                    0.0, 0.0),
                                                             child: Icon(
                                                               Icons
                                                                   .desktop_windows,
@@ -481,7 +475,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                                 alignment:
                                                                     AlignmentDirectional(
                                                                         -0.91,
-                                                                        0.00),
+                                                                        0.0),
                                                                 child:
                                                                     Container(
                                                                   width: 28.0,
@@ -505,7 +499,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                                 alignment:
                                                                     AlignmentDirectional(
                                                                         -0.62,
-                                                                        0.00),
+                                                                        0.0),
                                                                 child:
                                                                     Container(
                                                                   width: 28.0,
@@ -529,7 +523,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                                 alignment:
                                                                     AlignmentDirectional(
                                                                         -0.35,
-                                                                        0.00),
+                                                                        0.0),
                                                                 child:
                                                                     Container(
                                                                   width: 28.0,
@@ -668,12 +662,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  12.0,
-                                                                  12.0,
-                                                                  12.0,
-                                                                  12.0),
+                                                          EdgeInsets.all(12.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -698,7 +687,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                             ),
                                                             alignment:
                                                                 AlignmentDirectional(
-                                                                    0.00, 0.00),
+                                                                    0.0, 0.0),
                                                             child: Icon(
                                                               Icons
                                                                   .code_rounded,
@@ -787,7 +776,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                                 alignment:
                                                                     AlignmentDirectional(
                                                                         -0.91,
-                                                                        0.00),
+                                                                        0.0),
                                                                 child:
                                                                     Container(
                                                                   width: 28.0,
@@ -811,7 +800,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                                 alignment:
                                                                     AlignmentDirectional(
                                                                         -0.62,
-                                                                        0.00),
+                                                                        0.0),
                                                                 child:
                                                                     Container(
                                                                   width: 28.0,
@@ -835,7 +824,7 @@ class _CoursesWidgetState extends State<CoursesWidget>
                                                                 alignment:
                                                                     AlignmentDirectional(
                                                                         -0.35,
-                                                                        0.00),
+                                                                        0.0),
                                                                 child:
                                                                     Container(
                                                                   width: 28.0,

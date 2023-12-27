@@ -139,7 +139,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                       desktop: false,
                     ))
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           height: 44.0,
@@ -148,11 +148,11 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                 FlutterFlowTheme.of(context).primaryBackground,
                             borderRadius: BorderRadius.circular(0.0),
                           ),
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                         ),
                       ),
                     Align(
-                      alignment: AlignmentDirectional(0.00, 0.00),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 32.0, 16.0, 0.0),
@@ -170,7 +170,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                             ],
                             borderRadius: BorderRadius.circular(16.0),
                           ),
-                          alignment: AlignmentDirectional(0.00, -1.00),
+                          alignment: AlignmentDirectional(0.0, -1.0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -200,8 +200,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 16.0, 16.0, 16.0),
+                                      padding: EdgeInsets.all(16.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -218,7 +217,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -418,7 +417,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  0.95, 0.00),
+                                                                  0.95, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
@@ -439,7 +438,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  -0.85, 0.00),
+                                                                  -0.85, 0.0),
                                                           child: Container(
                                                             width: 36.0,
                                                             height: 36.0,
@@ -565,7 +564,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  -0.90, 0.00),
+                                                                  -0.9, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
@@ -587,7 +586,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  0.90, 0.00),
+                                                                  0.9, 0.0),
                                                           child: Container(
                                                             width: 36.0,
                                                             height: 36.0,
@@ -657,8 +656,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 8.0, 8.0, 8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -682,7 +680,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                           Expanded(
                                             child: Align(
                                               alignment: AlignmentDirectional(
-                                                  0.90, 0.00),
+                                                  0.9, 0.0),
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
                                                 color:
@@ -722,8 +720,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 8.0, 8.0, 8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -756,7 +753,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                             Expanded(
                                               child: Align(
                                                 alignment: AlignmentDirectional(
-                                                    0.90, 0.00),
+                                                    0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
                                                   color: FlutterFlowTheme.of(
@@ -806,8 +803,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 8.0, 8.0, 8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -831,7 +827,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                           Expanded(
                                             child: Align(
                                               alignment: AlignmentDirectional(
-                                                  0.90, 0.00),
+                                                  0.9, 0.0),
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
                                                 color:
@@ -871,8 +867,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 8.0, 8.0, 8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -896,7 +891,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                           Expanded(
                                             child: Align(
                                               alignment: AlignmentDirectional(
-                                                  0.90, 0.00),
+                                                  0.9, 0.0),
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
                                                 color:
@@ -936,8 +931,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 8.0, 8.0, 8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -961,7 +955,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                           Expanded(
                                             child: Align(
                                               alignment: AlignmentDirectional(
-                                                  0.90, 0.00),
+                                                  0.9, 0.0),
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
                                                 color:
@@ -1001,8 +995,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 8.0, 8.0, 8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -1042,7 +1035,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                             Expanded(
                                               child: Align(
                                                 alignment: AlignmentDirectional(
-                                                    0.90, 0.00),
+                                                    0.9, 0.0),
                                                 child: Icon(
                                                   Icons.arrow_forward_ios,
                                                   color: FlutterFlowTheme.of(

@@ -66,16 +66,16 @@ class _SignInWidgetState extends State<SignInWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0.00, 0.00),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
               width: 375.0,
               height: double.infinity,
               decoration: BoxDecoration(),
-              alignment: AlignmentDirectional(0.00, 0.00),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding:
@@ -90,41 +90,49 @@ class _SignInWidgetState extends State<SignInWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 12.0, 20.0, 12.0),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 30.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        if (Theme.of(context).brightness ==
-                                            Brightness.light)
-                                          SvgPicture.asset(
-                                            'assets/images/Logo.svg',
-                                            width: 180.0,
-                                            height: 60.0,
-                                            fit: BoxFit.fitWidth,
-                                          ),
-                                        if (Theme.of(context).brightness ==
-                                            Brightness.dark)
-                                          SvgPicture.asset(
-                                            'assets/images/LogoDark.svg',
-                                            width: 300.0,
-                                            height: 100.0,
-                                            fit: BoxFit.contain,
-                                          ),
-                                      ],
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 30.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          if (Theme.of(context).brightness ==
+                                              Brightness.light)
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: SvgPicture.asset(
+                                                'assets/images/Logo.svg',
+                                                width: 201.0,
+                                                height: 128.0,
+                                                fit: BoxFit.fitWidth,
+                                              ),
+                                            ),
+                                          if (Theme.of(context).brightness ==
+                                              Brightness.dark)
+                                            SvgPicture.asset(
+                                              'assets/images/LogoDark.svg',
+                                              width: 300.0,
+                                              height: 100.0,
+                                              fit: BoxFit.contain,
+                                            ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Text(
@@ -410,8 +418,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(50.0),
                                             ),
-                                            alignment: AlignmentDirectional(
-                                                0.00, 0.00),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Entrar',
                                               style:
@@ -466,7 +474,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.00, 0.00),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               GoRouter.of(context)
@@ -528,7 +536,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(0.00, 1.00),
+                                    alignment: AlignmentDirectional(0.0, 1.0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 90.0, 0.0, 24.0),

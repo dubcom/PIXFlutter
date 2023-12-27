@@ -108,14 +108,14 @@ class _CreatedKeyPixWidgetState extends State<CreatedKeyPixWidget> {
             )
           : null,
       body: Align(
-        alignment: AlignmentDirectional(0.00, 0.00),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Container(
                   width: 390.0,
                   constraints: BoxConstraints(
@@ -440,7 +440,7 @@ class _CreatedKeyPixWidgetState extends State<CreatedKeyPixWidget> {
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 30.0, 30.0, 30.0, 0.0),
@@ -449,7 +449,7 @@ class _CreatedKeyPixWidgetState extends State<CreatedKeyPixWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(0.00, 0.00),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -476,7 +476,7 @@ class _CreatedKeyPixWidgetState extends State<CreatedKeyPixWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.00, 0.05),
+                                  alignment: AlignmentDirectional(0.0, 0.05),
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       await KeyUserRecord.collection.doc().set({

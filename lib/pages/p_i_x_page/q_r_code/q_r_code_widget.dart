@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,10 +17,10 @@ export 'q_r_code_model.dart';
 class QRCodeWidget extends StatefulWidget {
   const QRCodeWidget({
     Key? key,
-    this.pi,
+    this.pixID,
   }) : super(key: key);
 
-  final String? pi;
+  final DocumentReference? pixID;
 
   @override
   _QRCodeWidgetState createState() => _QRCodeWidgetState();
@@ -68,7 +69,7 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               leading: Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 30.0,
@@ -85,7 +86,7 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                 ),
               ),
               title: Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -109,19 +110,19 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
       body: SafeArea(
         top: true,
         child: Align(
-          alignment: AlignmentDirectional(0.00, 0.00),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
             width: 390.0,
             decoration: BoxDecoration(),
-            alignment: AlignmentDirectional(0.00, 0.00),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Align(
-              alignment: AlignmentDirectional(0.00, 0.00),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
@@ -132,10 +133,9 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 10.0),
-                            child: StreamBuilder<List<PIXCreatedRecord>>(
-                              stream: queryPIXCreatedRecord(
-                                singleRecord: true,
-                              ),
+                            child: StreamBuilder<PIXCreatedRecord>(
+                              stream:
+                                  PIXCreatedRecord.getDocument(widget.pixID!),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
@@ -152,17 +152,8 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                     ),
                                   );
                                 }
-                                List<PIXCreatedRecord>
-                                    containerPIXCreatedRecordList =
-                                    snapshot.data!;
-                                // Return an empty Container when the item does not exist.
-                                if (snapshot.data!.isEmpty) {
-                                  return Container();
-                                }
                                 final containerPIXCreatedRecord =
-                                    containerPIXCreatedRecordList.isNotEmpty
-                                        ? containerPIXCreatedRecordList.first
-                                        : null;
+                                    snapshot.data!;
                                 return Container(
                                   width: double.infinity,
                                   constraints: BoxConstraints(
@@ -215,49 +206,13 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                           columnKeyUserRecordList.isNotEmpty
                                               ? columnKeyUserRecordList.first
                                               : null;
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed('homePage');
-                                            },
-                                            child: Text(
-                                              'Seu QR-Code',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineMediumFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMediumFamily),
-                                                        lineHeight: 2.0,
-                                                      ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 20.0),
-                                            child: InkWell(
+                                      return SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
                                               hoverColor: Colors.transparent,
@@ -267,72 +222,122 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                 context.pushNamed('homePage');
                                               },
                                               child: Text(
-                                                'Aqui você tem seu QR-Code',
+                                                'Seu QR-Code',
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                        .headlineMedium
                                                         .override(
                                                           fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMediumFamily,
-                                                          fontSize: 18.0,
+                                                                  .headlineMediumFamily,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMediumFamily),
+                                                                      .headlineMediumFamily),
                                                           lineHeight: 2.0,
                                                         ),
                                               ),
                                             ),
-                                          ),
-                                          Align(
-                                            alignment: AlignmentDirectional(
-                                                0.00, 0.00),
-                                            child: Padding(
+                                            Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      20.0, 20.0, 20.0, 20.0),
-                                              child: BarcodeWidget(
-                                                data: valueOrDefault<String>(
-                                                  functions.generatePixPayload(
-                                                      columnKeyUserRecord!
-                                                          .keyPIX,
-                                                      containerPIXCreatedRecord!
-                                                          .message,
-                                                      columnKeyUserRecord!
-                                                          .namePIX,
-                                                      containerPIXCreatedRecord!
-                                                          .textId,
-                                                      columnKeyUserRecord
-                                                          ?.cityPIX,
-                                                      containerPIXCreatedRecord!
-                                                          .valuePIX),
-                                                  'teste',
+                                                      0.0, 0.0, 0.0, 20.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.pushNamed('homePage');
+                                                },
+                                                child: Text(
+                                                  'Aqui você tem seu QR-Code',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        fontSize: 18.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                        lineHeight: 2.0,
+                                                      ),
                                                 ),
-                                                barcode: Barcode.qrCode(),
-                                                width: 300.0,
-                                                height: 300.0,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                errorBuilder:
-                                                    (_context, _error) =>
-                                                        SizedBox(
-                                                  width: 300.0,
-                                                  height: 300.0,
-                                                ),
-                                                drawText: false,
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(20.0),
+                                                child: BarcodeWidget(
+                                                  data: valueOrDefault<String>(
+                                                    functions
+                                                        .generatePixPayload(
+                                                            columnKeyUserRecord!
+                                                                .keyPIX,
+                                                            valueOrDefault<
+                                                                String>(
+                                                              containerPIXCreatedRecord
+                                                                  .message,
+                                                              'geraPIX',
+                                                            ),
+                                                            valueOrDefault<
+                                                                String>(
+                                                              columnKeyUserRecord
+                                                                  ?.namePIX,
+                                                              'NamePIX',
+                                                            ),
+                                                            valueOrDefault<
+                                                                String>(
+                                                              containerPIXCreatedRecord
+                                                                  .textId,
+                                                              'txtID',
+                                                            ),
+                                                            columnKeyUserRecord
+                                                                ?.cityPIX,
+                                                            containerPIXCreatedRecord
+                                                                .valuePIX),
+                                                    'teste',
+                                                  ),
+                                                  barcode: Barcode.qrCode(),
+                                                  width: 300.0,
+                                                  height: 300.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                  errorBuilder:
+                                                      (_context, _error) =>
+                                                          SizedBox(
+                                                    width: 300.0,
+                                                    height: 300.0,
+                                                  ),
+                                                  drawText: false,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   ),
@@ -345,7 +350,7 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
@@ -354,23 +359,13 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(0.00, 0.00),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
-                              child: StreamBuilder<List<KeyUserRecord>>(
-                                stream: queryKeyUserRecord(
-                                  queryBuilder: (keyUserRecord) => keyUserRecord
-                                      .where(
-                                        'authoID',
-                                        isEqualTo: currentUserReference,
-                                      )
-                                      .where(
-                                        'statusPIX',
-                                        isEqualTo: true,
-                                      ),
-                                  singleRecord: true,
-                                ),
+                              child: StreamBuilder<PIXCreatedRecord>(
+                                stream:
+                                    PIXCreatedRecord.getDocument(widget.pixID!),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
@@ -388,17 +383,8 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                       ),
                                     );
                                   }
-                                  List<KeyUserRecord>
-                                      containerKeyUserRecordList =
+                                  final containerPIXCreatedRecord =
                                       snapshot.data!;
-                                  // Return an empty Container when the item does not exist.
-                                  if (snapshot.data!.isEmpty) {
-                                    return Container();
-                                  }
-                                  final containerKeyUserRecord =
-                                      containerKeyUserRecordList.isNotEmpty
-                                          ? containerKeyUserRecordList.first
-                                          : null;
                                   return Container(
                                     width: double.infinity,
                                     constraints: BoxConstraints(
@@ -409,19 +395,18 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                           .secondaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.00, 0.00),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Align(
-                                      alignment:
-                                          AlignmentDirectional(0.00, 1.00),
+                                      alignment: AlignmentDirectional(0.0, 1.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 10.0, 10.0, 20.0),
-                                        child: StreamBuilder<
-                                            List<PIXCreatedRecord>>(
-                                          stream: queryPIXCreatedRecord(
-                                            queryBuilder: (pIXCreatedRecord) =>
-                                                pIXCreatedRecord.where(
-                                              'authorId',
+                                        child:
+                                            StreamBuilder<List<KeyUserRecord>>(
+                                          stream: queryKeyUserRecord(
+                                            queryBuilder: (keyUserRecord) =>
+                                                keyUserRecord.where(
+                                              'authoID',
                                               isEqualTo: currentUserReference,
                                             ),
                                             singleRecord: true,
@@ -446,17 +431,17 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                 ),
                                               );
                                             }
-                                            List<PIXCreatedRecord>
-                                                columnPIXCreatedRecordList =
+                                            List<KeyUserRecord>
+                                                columnKeyUserRecordList =
                                                 snapshot.data!;
                                             // Return an empty Container when the item does not exist.
                                             if (snapshot.data!.isEmpty) {
                                               return Container();
                                             }
-                                            final columnPIXCreatedRecord =
-                                                columnPIXCreatedRecordList
+                                            final columnKeyUserRecord =
+                                                columnKeyUserRecordList
                                                         .isNotEmpty
-                                                    ? columnPIXCreatedRecordList
+                                                    ? columnKeyUserRecordList
                                                         .first
                                                     : null;
                                             return Column(
@@ -506,15 +491,15 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                                   ),
                                                             ),
                                                             Text(
-                                                              formatNumber(
-                                                                columnPIXCreatedRecord!
-                                                                    .valuePIX,
-                                                                formatType:
-                                                                    FormatType
-                                                                        .decimal,
-                                                                decimalType:
-                                                                    DecimalType
-                                                                        .commaDecimal,
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                functions.currencyCustomFunction(
+                                                                    containerPIXCreatedRecord
+                                                                        .valuePIX
+                                                                        .toString(),
+                                                                    2,
+                                                                    'pt_BR'),
+                                                                'R\$',
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -557,12 +542,8 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                                   ),
                                                             ),
                                                             Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                columnPIXCreatedRecord
-                                                                    ?.message,
-                                                                'teste',
-                                                              ),
+                                                              containerPIXCreatedRecord
+                                                                  .message,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium,
@@ -604,12 +585,8 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                                   ),
                                                             ),
                                                             Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                columnPIXCreatedRecord
-                                                                    ?.textId,
-                                                                'test',
-                                                              ),
+                                                              containerPIXCreatedRecord
+                                                                  .textId,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium,
@@ -653,9 +630,9 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                             Text(
                                                               valueOrDefault<
                                                                   String>(
-                                                                containerKeyUserRecord
+                                                                columnKeyUserRecord
                                                                     ?.keyPIX,
-                                                                'pixkeyyyyyy',
+                                                                'testete',
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -670,7 +647,7 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0.00, 0.05),
+                                                          0.0, 0.05),
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
@@ -684,17 +661,17 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                                     valueOrDefault<
                                                                         String>(
                                                           functions.generatePixPayload(
-                                                              containerKeyUserRecord!
+                                                              containerPIXCreatedRecord
                                                                   .keyPIX,
-                                                              columnPIXCreatedRecord!
+                                                              containerPIXCreatedRecord
                                                                   .message,
-                                                              containerKeyUserRecord!
+                                                              columnKeyUserRecord!
                                                                   .namePIX,
-                                                              columnPIXCreatedRecord!
+                                                              containerPIXCreatedRecord
                                                                   .textId,
-                                                              containerKeyUserRecord
+                                                              columnKeyUserRecord
                                                                   ?.cityPIX,
-                                                              columnPIXCreatedRecord!
+                                                              containerPIXCreatedRecord
                                                                   .valuePIX),
                                                           'teste',
                                                         )));
@@ -779,7 +756,7 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional

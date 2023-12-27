@@ -121,19 +121,19 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget>
             )
           : null,
       body: Align(
-        alignment: AlignmentDirectional(0.00, 0.00),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Container(
           width: 390.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
-          alignment: AlignmentDirectional(0.00, 0.00),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -197,7 +197,10 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget>
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: SvgPicture.asset(
-                                    'assets/images/LogoDark.svg',
+                                    Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? 'assets/images/LogoDark.svg'
+                                        : 'assets/images/Logo.svg',
                                     width: 300.0,
                                     height: 100.0,
                                     fit: BoxFit.contain,
@@ -213,7 +216,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget>
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -289,7 +292,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget>
                                 ],
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.00, 0.00),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 20.0, 16.0, 0.0),

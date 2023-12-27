@@ -97,7 +97,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
       body: SafeArea(
         top: true,
         child: Align(
-          alignment: AlignmentDirectional(0.00, 0.00),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -472,7 +472,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               30.0, 30.0, 30.0, 0.0),
@@ -481,7 +481,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0.00, 0.00),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -508,7 +508,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.00, 0.05),
+                                alignment: AlignmentDirectional(0.0, 0.05),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     {
